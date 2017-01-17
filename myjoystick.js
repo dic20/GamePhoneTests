@@ -138,16 +138,17 @@ function onTouchMove(e) {
     touch = e.touches[0];
     touchX = touch.clientX;
     touchY = touch.clientY;
+
+    var dist = Math.sqrt((baseY-touchY)*(baseY-touchY)+(baseX-touchX)*(baseY-touchX));
+
     var lowHigh = ((baseY-touchY)>50 || (baseY-touchY)<-50);
     var leftRight = (((baseX-touchX)>50) || (baseX-touchX)<-50);
     if(touching){
-        if(!lowHigh){
+        if(dist<60){
             circY = touchY;
-        }//if
-        if(!leftRight){
             circX = touchX;
         }//if
-    }
+    }//if
 }//onTouchMove
 
 function onTouchEnd(e) {
@@ -157,8 +158,16 @@ function onTouchEnd(e) {
 function onMouseMove(event) {
 	mouseX = event.offsetX;
 	mouseY = event.offsetY;
+    var dir = getDirection();
+
+    var dist = Math.sqrt((baseY-mouseY)*(baseY-mouseY)+(baseX-mouseX)*(baseX-mouseX));
+
+    var ydist = dist*Math.abs(dir.ydir);
+    var xdist = dist*Math.abs(dir.xdir);
+
     var lowHigh = ((baseY-mouseY)>50 || (baseY-mouseY)<-50);
     var leftRight = (((baseX-mouseX)>50) || (baseX-mouseX)<-50);
+
     if(mouseDown){
         if(!lowHigh){
             circY = mouseY;
