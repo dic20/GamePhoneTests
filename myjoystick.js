@@ -64,7 +64,7 @@ if(touchable) {
 function resetCanvas (e) {
   // resize the canvas - but remember - this clears the canvas too.
   canvasL.width = window.innerWidth;
-  canvasL.height = window.innerHeight;
+  canvasL.height = window.innerHeight*2;
   //make sure we scroll to the top left.
   window.scrollTo(0,0);
 }
@@ -74,11 +74,11 @@ function init(){
 }//init
 
 function drawR(){
-  r.clearRect(0, 0, canvasR.width, canvasR.height);
+  r.clearRect(0, 0, canvasR.width, canvasR.height*2);
 }
 
 function drawL(){
-  c.clearRect(0, 0, canvasL.width, canvasL.height);
+  c.clearRect(0, 0, canvasL.width, canvasL.height*2);
   if(touching && touch.clientX<halfX){
     var digDirection = getDigDirection();
     var digx = digDirection.xdig;
